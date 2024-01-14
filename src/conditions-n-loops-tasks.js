@@ -1,5 +1,3 @@
-/* eslint-disable no-fallthrough */
-/* eslint-disable no-undef */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                             *
