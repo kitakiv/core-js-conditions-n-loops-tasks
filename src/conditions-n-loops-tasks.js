@@ -313,24 +313,26 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
-  // if (arr.length === 0) {
-  //   return -1;
-  // }
-  // const balance = Math.floor(arr.length / 2);
-  // let first = 0;
-  // let second = 0;
-  // for (let i = 0; i < balance; i += 1) {
-  //   first += arr[i];
-  // }
-  // for (let i = balance + 1; i < arr.length; i += 1) {
-  //   second += arr[i];
-  // }
-  // if (second === first) {
-  //   return balance;
-  // }
-  // return -1;
+function getBalanceIndex(arr) {
+  let balance = 1;
+  if (!arr.length > 2) {
+    return -1;
+  }
+  while (balance < arr.length - 1) {
+    let first = 0;
+    let second = 0;
+    for (let i = 0; i < balance; i += 1) {
+      first += arr[i];
+    }
+    for (let i = balance + 1; i < arr.length; i += 1) {
+      second += arr[i];
+    }
+    if (first === second) {
+      return balance;
+    }
+    balance += 1;
+  }
+  return -1;
 }
 
 /**
@@ -392,6 +394,13 @@ function rotateMatrix(/* matrix */) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(/* arr */) {
+  // let result = [];
+  // for (let i = 0; i < arr.length; i += 1) {
+  //   result = [...result, Math.min(...arr)];
+  //   // eslint-disable-next-line no-param-reassign, no-param-reassign
+  //   arr[arr.indexOf(Math.min(...arr))] = Infinity;
+  // }
+  // return arr;
   throw new Error('Not implemented');
 }
 
