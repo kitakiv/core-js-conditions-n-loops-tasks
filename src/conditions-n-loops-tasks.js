@@ -375,8 +375,15 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const link = matrix;
+  const mas = JSON.parse(JSON.stringify(matrix));
+  for (let i = 0; i < mas.length; i += 1) {
+    for (let t = 0; t < mas.length; t += 1) {
+      link[i][t] = mas[mas.length - 1 - t][i];
+    }
+  }
+  return matrix;
 }
 
 /**
@@ -393,15 +400,15 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
+function sortByAsc(arr) {
+  // let mas = arr;
   // let result = [];
-  // for (let i = 0; i < arr.length; i += 1) {
-  //   result = [...result, Math.min(...arr)];
-  //   // eslint-disable-next-line no-param-reassign, no-param-reassign
-  //   arr[arr.indexOf(Math.min(...arr))] = Infinity;
+  // for (let i = 0; i < mas.length; i += 1) {
+  //   result = [...result, Math.min(...mas)];
+  //   mas[mas.indexOf(Math.min(...mas))] = Infinity;
   // }
-  // return arr;
-  throw new Error('Not implemented');
+  // mas = result;
+  return arr;
 }
 
 /**
