@@ -400,7 +400,7 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(arr) {
+function sortByAsc(/* arr */) {
   // let mas = arr;
   // let result = [];
   // for (let i = 0; i < mas.length; i += 1) {
@@ -408,7 +408,8 @@ function sortByAsc(arr) {
   //   mas[mas.indexOf(Math.min(...mas))] = Infinity;
   // }
   // mas = result;
-  return arr;
+  // return arr;
+  throw new Error('Not implemented');
 }
 
 /**
@@ -428,8 +429,41 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  const times = iterations;
+  let r = 0;
+  let mas1 = str;
+  for (let i = 1; i <= str.length; i += 1) {
+    let mas = '';
+    for (let f = 0; f < str.length; f += 2) {
+      mas = `${mas}${mas1[f]}`;
+    }
+    for (let f = 1; f < str.length; f += 2) {
+      mas = `${mas}${mas1[f]}`;
+    }
+    if (str === mas) {
+      r = i;
+      break;
+    }
+    mas1 = mas;
+  }
+  if (times > r) {
+    r = times - r * Math.floor(times / r);
+  } else {
+    r = times;
+  }
+  mas1 = str;
+  for (let i = 0; i < r; i += 1) {
+    let mas = '';
+    for (let f = 0; f < mas1.length; f += 2) {
+      mas = `${mas}${mas1[f]}`;
+    }
+    for (let f = 1; f < mas1.length; f += 2) {
+      mas = `${mas}${mas1[f]}`;
+    }
+    mas1 = mas;
+  }
+  return mas1;
 }
 
 /**
