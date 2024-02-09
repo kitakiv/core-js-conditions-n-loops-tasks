@@ -356,8 +356,78 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  let index = 1;
+  let first = 0;
+  let second = 0;
+  let plus = true;
+  let elem = 2;
+  let mas = [];
+  for (let i = 0; i < size; i += 1) {
+    let inside = [];
+    for (let k = 0; k < size; k += 1) {
+      inside = [...inside, 't'];
+    }
+    mas = [...mas, inside];
+  }
+  function changeIndex() {
+    if (plus) {
+      if (elem === 2) {
+        if (second + 1 === size - 1) {
+          elem = 1;
+        }
+        if (typeof mas[first][second + 1] === 'string') {
+          second += 1;
+        } else {
+          elem = 1;
+        }
+      } else {
+        if (first + 1 === size - 1) {
+          elem = 2;
+          plus = false;
+        }
+        if (typeof mas[first + 1][second] === 'string') {
+          first += 1;
+        } else {
+          elem = 2;
+          plus = false;
+        }
+      }
+    } else {
+      plus = false;
+      if (elem === 2) {
+        if (second - 1 === 0) {
+          elem = 1;
+        }
+        if (typeof mas[first][second - 1] === 'string') {
+          second -= 1;
+        } else {
+          elem = 1;
+        }
+      } else {
+        if (first - 1 === 0) {
+          elem = 2;
+          plus = true;
+        }
+        if (typeof mas[first - 1][second] === 'string') {
+          first -= 1;
+        } else {
+          elem = 2;
+          plus = true;
+        }
+      }
+    }
+  }
+  while (index <= size ** 2) {
+    if (mas[first][second] && typeof mas[first][second] === 'string') {
+      mas[first][second] = index;
+      index += 1;
+      changeIndex();
+    } else {
+      changeIndex();
+    }
+  }
+  return mas;
 }
 
 /**
@@ -400,16 +470,20 @@ function rotateMatrix(matrix) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  // let mas = arr;
-  // let result = [];
-  // for (let i = 0; i < mas.length; i += 1) {
-  //   result = [...result, Math.min(...mas)];
-  //   mas[mas.indexOf(Math.min(...mas))] = Infinity;
-  // }
-  // mas = result;
-  // return arr;
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const mas = arr;
+  const origin = JSON.parse(JSON.stringify(arr));
+  for (let i = 0; i < origin.length; i += 1) {
+    const x = Math.min(...origin);
+    mas[i] = x;
+    for (let t = 0; t < origin.length; t += 1) {
+      if (origin[t] === x) {
+        origin[t] = Infinity;
+        break;
+      }
+    }
+  }
+  return arr;
 }
 
 /**
