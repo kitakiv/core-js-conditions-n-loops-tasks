@@ -471,19 +471,32 @@ function rotateMatrix(matrix) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
-  const mas = arr;
-  const origin = JSON.parse(JSON.stringify(arr));
-  for (let i = 0; i < origin.length; i += 1) {
-    const x = Math.min(...origin);
-    mas[i] = x;
-    for (let t = 0; t < origin.length; t += 1) {
-      if (origin[t] === x) {
-        origin[t] = Infinity;
-        break;
+  const arr2 = arr;
+  function doRightMas(arr1) {
+    const rightmas = [];
+    const leftmas = [];
+    let mas = [];
+    const sered = arr1[0];
+
+    if (arr1.length <= 1) {
+      return arr;
+    }
+
+    for (let i = 1; i < arr1.length; i += 1) {
+      if (sered <= arr1[i]) {
+        rightmas[rightmas.length] = arr1[i];
+      } else {
+        leftmas[leftmas.length] = arr1[i];
       }
     }
+    mas = [...sortByAsc(leftmas), sered, ...sortByAsc(rightmas)];
+    return mas;
   }
-  return arr;
+  const mas = doRightMas(arr2);
+  for (let i = 0; i < mas.length; i += 1) {
+    arr2[i] = mas[i];
+  }
+  return arr2;
 }
 
 /**
